@@ -51,7 +51,7 @@ catkin_make
 source ./devel/setup.bash
 ```
 
-##License
+## License
 
 See the [LICENSE](https://github.com/banuprathap/turtlebot_explorer/blob/master/LICENSE) file for license rights and limitations (MIT).
 
