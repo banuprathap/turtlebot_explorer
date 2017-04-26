@@ -7,11 +7,13 @@ Most mobile robot applications require the ability to navigate. While many robot
 
 This project is aimed at rescue operation in indoor environments during disasters. This project has several applications in this domain ranging from inspection of nuclear plants or initial inspection of a damaged building during an earthquake where there is little to zero information about the environment. It will be implemented on a Turtlebot simulated in Gazebo.
 
-<b>
+
 Author(s): Banuprathap Anandan
+
 Maintainer: Banuprathap Anandan, bprathap@umd.edu
+
 Affiliation: University of Maryland
-</b>
+
 <img src="http://s9.postimg.org/aah3joxv3/image.jpg" width="450">
 
 ## Dependencies
@@ -38,6 +40,7 @@ Please click [here]() for details about SPRINT.
 
 
 ## Build steps
+
 - Open a terminal
 ```bash
 mkdir -p catkin_ws/src
@@ -49,22 +52,29 @@ source ./devel/setup.bash
 ```
 
 ##License
+
 See the [LICENSE](https://github.com/banuprathap/turtlebot_explorer/blob/master/LICENSE) file for license rights and limitations (MIT).
 
 ## Status
+
 Stub
 
 ## Running the demo
+
 Stub
 
 ## Running Tests
+
 Stub
 
 ## Documentation
+
 Stub
 
 ### ROS Node Details
+
 Stub
 
 ## Issues and bugs
+
 Stub
