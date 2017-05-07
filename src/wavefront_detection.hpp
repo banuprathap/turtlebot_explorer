@@ -31,26 +31,25 @@
  */
 
 /**
- * @file main.cpp
- * @brief 
+ * @file wavefront_detection.hpp
+ * @brief
  * @author Banuprathap Anandan
- * @date   04/26/2017
+ * @date   05/06/2017
  */
+#ifndef SRC_WAVEFRONT_DETECTION_HPP_
+#define SRC_WAVEFRONT_DETECTION_HPP_
+#include <vector>
+#include <queue>
 #include "ros/ros.h"
-#include "ros/console.h"
-#include "geometry_msgs/Twist.h"
-#include "sensor_msgs/LaserScan.h"
 #include "nav_msgs/OccupancyGrid.h"
 
-/**
- * @brief      Execution starts here
- *
- * @param[in]  argc  The argc
- * @param      argv  The argv
- *
- * @return     Returns 0 upon successful execution
- */
-int main(int argc, char **argv) {
-  // Implement me
-  return 0;
-}
+class wavefront {
+ public:
+    void get_neighbours(int n_array[], int position, int map_width);
+    bool is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
+                           int map_size, int map_width);
+    std::vector<std::vector<int>> wfd(const nav_msgs::OccupancyGrid& map,
+                                      int map_height, int map_width, int pose);
+};
+
+#endif  //  SRC_WAVEFRONT_DETECTION_HPP_
