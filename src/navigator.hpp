@@ -31,44 +31,33 @@
  */
 
 /**
- * @file explorer.hpp
+ * @file navigator.hpp
  * @brief
  * @author Banuprathap Anandan
  * @date   05/07/2017
  */
-
-#ifndef SRC_EXPLORER_HPP_
-#define SRC_EXPLORER_HPP_
-
+#ifndef SRC_NAVIGATOR_HPP_
+#define SRC_NAVIGATOR_HPP_
 #include "ros/ros.h"
 #include "ros/console.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
 #include "nav_msgs/OccupancyGrid.h"
-#include "wavefront_detection.hpp"
+#include "tf/transform_broadcaster.h"
+#include "tf/transform_listener.h"
+#include "sensor_msgs/PointCloud.h"
+#include "move_base_msgs/MoveBaseAction.h"
+#include "actionlib/client/simple_action_client.h"
 
-/**
- * @brief      Class for exploration task.
- */
-class Explorer {
+class Navigator {
   public:
-    /**
-     * @brief      Default constructor to initiate publisher and subscriber
-     *
-     *
-     * @param      nh    ROS NodeHandle
-     */
-    Explorer(ros::NodeHandle& nh);
-    /**
-     * @brief      Callback function from the map subscriber
-     *
-     * @param[in]  map   The map
-     */
-    void mapCallback(const nav_msgs::OccupancyGrid& map);
+    Navigator(ros::NodeHandle& nh);
+    void frontierCallback(const sensor_msgs::PointCloud frontier_cloud);
   protected:
-    sensor_msgs::PointCloud frontier_cloud;
-    ros::Publisher frontier_pub;
-    ros::Subscriber mapSub;
+    int getNearestFrontier(const sensor_msgs::PointCloud frontier_cloud);
+    void movetoFrontier(int x, int y);
+    ros::Subscriber frontierSub;
+    tf::TransformListener *tfListener;
 };
 
-#endif  //  SRC_EXPLORER_HPP_
+#endif  //  SRC_NAVIGATOR_HPP_
