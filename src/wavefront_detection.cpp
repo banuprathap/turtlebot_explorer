@@ -31,14 +31,21 @@
  */
 
 /**
- * @file wavefront_detection.hpp
+ * @file wavefront_detection.cpp
  * @brief
  * @author Banuprathap Anandan
  * @date   05/07/2017
  */
 #include "wavefront_detection.hpp"
-
-void wavefront::get_neighbours(int& n_array[], int pos, int map_width) {
+#define OCC_THRESH 10  //  threshold value to determine cell occupancy
+/**
+ * @brief      Returns the neighbours of a cell
+ *
+ * @param      n_array    The array containing neighbours
+ * @param[in]  pos        The position of current cell
+ * @param[in]  map_width  The map width
+ */
+void wavefront::get_neighbours(int &n_array[], int pos, int map_width) {
   n_array[0] = pos - map_width - 1;
   n_array[1] = pos - map_width;
   n_array[2] = pos - map_width + 1;
@@ -47,4 +54,19 @@ void wavefront::get_neighbours(int& n_array[], int pos, int map_width) {
   n_array[5] = pos + map_width - 1;
   n_array[6] = pos + map_width;
   n_array[7] = pos + map_width + 1;
+}
+
+bool wavefront::is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
+                                  int map_size, int map_width) {
+  int neighbours[8];
+  get_neighbours(neighbours, point, map_width);
+  bool found(false);
+  for (int i = 0; i < 8; i++) {
+    if (neighbours[i] >= 0 && neighbours[i] < map_size) {
+      if (map.data[neighbours[i]] == 0) {
+        found = true;
+      }
+    }
+  }
+  return found;
 }

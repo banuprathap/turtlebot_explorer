@@ -75,6 +75,8 @@ class Explorer {
  * @return     Returns 0 upon successful execution
  */
 int main(int argc, char **argv) {
-  // Implement me
+  ros::init(argc, argv, "TurtlebotExploration");
+  ros::NodeHandle n;
+  Explorer explore(n);
   return 0;
 }
