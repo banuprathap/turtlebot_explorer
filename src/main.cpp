@@ -32,7 +32,7 @@
 
 /**
  * @file main.cpp
- * @brief 
+ * @brief
  * @author Banuprathap Anandan
  * @date   04/26/2017
  */
@@ -41,6 +41,30 @@
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
 #include "nav_msgs/OccupancyGrid.h"
+#include "wavefront_detection.hpp"
+/**
+ * @brief      Class for exploration task.
+ */
+class Explorer {
+ public:
+    /**
+     * @brief      Default constructor to initiate publisher and subscriber
+     *
+     *
+     * @param      nh    ROS NodeHandle
+     */
+    Explorer(ros::NodeHandle& nh);
+    /**
+     * @brief      Callback function from the map subscriber
+     *
+     * @param[in]  map   The map
+     */
+    void mapCallback(const nav_msgs::OccupancyGrid& map);
+ protected:
+    sensor_msgs::PointCloud frontier_cloud;
+    ros::Publisher frontier_pub;
+    ros::Subscriber mapSub;
+};
 
 /**
  * @brief      Execution starts here
