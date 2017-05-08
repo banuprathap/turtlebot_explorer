@@ -34,22 +34,17 @@
  * @file wavefront_detection.hpp
  * @brief
  * @author Banuprathap Anandan
- * @date   05/06/2017
+ * @date   05/07/2017
  */
-#ifndef SRC_WAVEFRONT_DETECTION_HPP_
-#define SRC_WAVEFRONT_DETECTION_HPP_
-#include <vector>
-#include <queue>
-#include "ros/ros.h"
-#include "nav_msgs/OccupancyGrid.h"
+#include "wavefront_detection.hpp"
 
-class wavefront {
- public:
-    void get_neighbours(int& n_array[], int position, int map_width);
-    bool is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
-                           int map_size, int map_width);
-    std::vector<std::vector<int>> wfd(const nav_msgs::OccupancyGrid& map,
-                                      int map_height, int map_width, int pose);
-};
-
-#endif  //  SRC_WAVEFRONT_DETECTION_HPP_
+void wavefront::get_neighbours(int& n_array[], int pos, int map_width) {
+  n_array[0] = pos - map_width - 1;
+  n_array[1] = pos - map_width;
+  n_array[2] = pos - map_width + 1;
+  n_array[3] = pos - 1;
+  n_array[4] = pos + 1;
+  n_array[5] = pos + map_width - 1;
+  n_array[6] = pos + map_width;
+  n_array[7] = pos + map_width + 1;
+}
