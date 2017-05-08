@@ -31,22 +31,27 @@
  */
 
 /**
- * @file main.cpp
+ * @file wavefront_detection.cpp
  * @brief
  * @author Banuprathap Anandan
- * @date   04/26/2017
+ * @date   05/07/2017
  */
+
+#ifndef SRC_EXPLORER_HPP_
+#define SRC_EXPLORER_HPP_
+
 #include "ros/ros.h"
 #include "ros/console.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
 #include "nav_msgs/OccupancyGrid.h"
 #include "wavefront_detection.hpp"
+
 /**
  * @brief      Class for exploration task.
  */
 class Explorer {
- public:
+  public:
     /**
      * @brief      Default constructor to initiate publisher and subscriber
      *
@@ -60,24 +65,10 @@ class Explorer {
      * @param[in]  map   The map
      */
     void mapCallback(const nav_msgs::OccupancyGrid& map);
- protected:
+  protected:
     sensor_msgs::PointCloud frontier_cloud;
     ros::Publisher frontier_pub;
     ros::Subscriber mapSub;
 };
 
-/**
- * @brief      Execution starts here
- *
- * @param[in]  argc  The argc
- * @param      argv  The argv
- *
- * @return     Returns 0 upon successful execution
- */
-int main(int argc, char **argv) {
-  ros::init(argc, argv, "TurtlebotExploration");
-  ros::NodeHandle n;
-  Explorer explore(n);
-  ros::spinOnce();
-  return 0;
-}
+#endif  //  SRC_EXPLORER_HPP_

@@ -55,7 +55,16 @@ void wavefront::get_neighbours(int &n_array[], int pos, int map_width) {
   n_array[6] = pos + map_width;
   n_array[7] = pos + map_width + 1;
 }
-
+/**
+ * @brief      Determines if a given point is a frontier point.
+ *
+ * @param[in]  map        The map
+ * @param[in]  point      The point of interest
+ * @param[in]  map_size   The map size
+ * @param[in]  map_width  The map width
+ *
+ * @return     True if it's a frontier point, False otherwise.
+ */
 bool wavefront::is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
                                   int map_size, int map_width) {
   int neighbours[8];
@@ -69,4 +78,18 @@ bool wavefront::is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
     }
   }
   return found;
+}
+/**
+ * @brief      Wavefront Frontier Detector
+ *
+ * @param[in]  map         The map
+ * @param[in]  map_height  The map height
+ * @param[in]  map_width   The map width
+ * @param[in]  pose        Current pose of robot
+ *
+ * @return     Returns a list of frontiers
+ */
+std::vector<std::vector<int>> wfd(const nav_msgs::OccupancyGrid& map,
+int map_height, int map_width, int pose) {
+  std::vector<std::vector<int>> frontiers;
 }
