@@ -48,6 +48,9 @@
 #include "sensor_msgs/PointCloud.h"
 #include "move_base_msgs/MoveBaseAction.h"
 #include "actionlib/client/simple_action_client.h"
+
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+
 /**
  * @brief      Class for navigator functionalities.
  */
@@ -70,7 +73,7 @@ class Navigator {
      *
      * @return     The distance.
      */
-    float getDistance(float x1, float x2, float y1, float y2)
+    float getDistance(float x1, float x2, float y1, float y2);
   protected:
     /**
      * @brief      Returns the nearest frontier.

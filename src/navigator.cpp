@@ -43,8 +43,8 @@ void Navigator::Navigator(ros::NodeHandle& nh) {
                              &Navigator::frontierCallback, this);
 }
 
-float getDistance(float x1, float x2, float y1, float y2) {
-  return sqrt(pow((x1 - x2), 2.) + pow((y1 - y2), 2.));
+float Navigator::getDistance(float x1, float x2, float y1, float y2) {
+  return sqrt(pow((x1 - x2), 2.0) + pow((y1 - y2), 2.0));
 }
 
 void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
