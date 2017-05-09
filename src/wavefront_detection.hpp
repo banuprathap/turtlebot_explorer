@@ -43,7 +43,7 @@
 #include "ros/ros.h"
 #include "nav_msgs/OccupancyGrid.h"
 
-class wavefront {
+class Wavefront {
  public:
     void get_neighbours(int& n_array[], int position, int map_width);
     bool is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,

@@ -48,15 +48,53 @@
 #include "sensor_msgs/PointCloud.h"
 #include "move_base_msgs/MoveBaseAction.h"
 #include "actionlib/client/simple_action_client.h"
-
+/**
+ * @brief      Class for navigator functionalities.
+ */
 class Navigator {
   public:
     Navigator(ros::NodeHandle& nh);
+    /**
+     * @brief      Callback function for frontier subscriber
+     *
+     * @param[in]  frontier_cloud  The frontier cloud
+     */
     void frontierCallback(const sensor_msgs::PointCloud frontier_cloud);
+    /**
+     * @brief      Returns the distance between two points
+     *
+     * @param[in]  x1    The x coordinate of point 1
+     * @param[in]  x2    The x coordinate of point 2
+     * @param[in]  y1    The y coordinate of point 1
+     * @param[in]  y2    The y coordinate of point 2
+     *
+     * @return     The distance.
+     */
+    float getDistance(float x1, float x2, float y1, float y2)
   protected:
+    /**
+     * @brief      Returns the nearest frontier.
+     *
+     * @param[in]  frontier_cloud  The frontier cloud
+     *
+     * @return     The nearest frontier index.
+     */
     int getNearestFrontier(const sensor_msgs::PointCloud frontier_cloud);
+    /**
+     * @brief      Fucntion to move the robot to
+     *             the given map index
+     *
+     * @param[in]  x     x coordinate in map
+     * @param[in]  y     y coordinate in map
+     */
     void movetoFrontier(int x, int y);
+    /**
+     * Subscriber to the frontier publisher
+     */
     ros::Subscriber frontierSub;
+    /**
+     * Transform Listener
+     */
     tf::TransformListener *tfListener;
 };
 

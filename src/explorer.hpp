@@ -69,6 +69,7 @@ class Explorer {
     sensor_msgs::PointCloud frontier_cloud;
     ros::Publisher frontier_pub;
     ros::Subscriber mapSub;
+    Wavefront wf;
 };
 
 #endif  //  SRC_EXPLORER_HPP_
