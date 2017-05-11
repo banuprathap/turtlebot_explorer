@@ -12,6 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   sensor_msgs
+  tf
+  geometry_msgs
+  actionlib
+  move_base_msgs
+  turtlebot_gazebo
 )
 
 ## System dependencies are found with CMake's conventions
@@ -106,7 +111,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES turtlebot_explorer
-  CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs turtlebot_gazebo move_base_msgs actionlib tf geometry_msgs
 #  DEPENDS system_lib
 )
 
