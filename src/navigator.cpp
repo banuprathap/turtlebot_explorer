@@ -108,11 +108,11 @@ int Navigator::getNearestFrontier(const sensor_msgs::PointCloud
   }
   return frontier_i;
 }
+
 void Navigator::spin() {
-  ros::Rate rate(10);  //  Specify the FSM loop rate in Hz
+  ros::Rate rate(50);  //  Specify the FSM loop rate in Hz
   while (ros::ok()) {  //  Keep spinning loop until user presses Ctrl+C
     ros::spinOnce();  //  Allow ROS to process incoming messages
-    frontier_publisher.publish(frontier_cloud);
     rate.sleep();  //  Sleep for the rest of the cycle
   }
 }

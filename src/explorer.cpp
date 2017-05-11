@@ -39,6 +39,7 @@
 #include <vector>
 #include "explorer.hpp"
 
+Wavefront wf;
 
 void Explorer::Explorer(ros::NodeHandle& nh) {
   frontier_pub = nh.advertise<sensor_msgs::PointCloud>("frontiers", 1);
@@ -87,8 +88,8 @@ int main(int argc, char **argv) {
   ros::init(argc, argv,
             "TurtlebotExploration");  //  Initiate new ROS node
   ros::NodeHandle n;
-  TurtlebotExploration walker(n);
-  ROS_INFO("INFO! FRINTIERS");
-  walker.spin();  //  Execute FSM loop
+  Explorer explore(n);
+  ROS_INFO("INFO! FRONTIERS");
+  explore.spin();  //  Execute FSM loop
   return 0;
 }

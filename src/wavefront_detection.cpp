@@ -49,7 +49,7 @@
  * @param[in]  pos        The position of current cell
  * @param[in]  map_width  The map width
  */
-void Wavefront::get_neighbours(int &n_array[], int pos, int map_width) {
+void Wavefront::getNeighbours(int &n_array[], int pos, int map_width) {
   n_array[0] = pos - map_width - 1;
   n_array[1] = pos - map_width;
   n_array[2] = pos - map_width + 1;
@@ -69,8 +69,11 @@ void Wavefront::get_neighbours(int &n_array[], int pos, int map_width) {
  *
  * @return     True if it's a frontier point, False otherwise.
  */
-bool Wavefront::is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
+bool Wavefront::isFrontierPoint(const nav_msgs::OccupancyGrid& map, int point,
                                   int map_size, int map_width) {
+  if (map.data[point] != -1) {
+    return false;
+  }
   int neighbours[8];
   get_neighbours(neighbours, point, map_width);
   bool found(false);
@@ -107,7 +110,6 @@ int map_height, int map_width, int pose) {
     int cur_pos = q_m.front();
     q_m.pop();
     ROS_INFO("cur_pos: %d, cell_state: %d", cur_pos, cell_states[cur_pos]);
-    //  Skip if map_close_list
     if (cell_states[cur_pos] == MAP_CLOSE_LIST)
       continue;
     if (is_frontier_point(map, cur_pos, map_size, map_width)) {
@@ -158,7 +160,7 @@ int map_height, int map_width, int pose) {
           for (int j = 0; j < 8; j++) {
             if (v_neighbours[j] < map_size && v_neighbours[j] >= 0) {
               if (map.data[v_neighbours[j]] < OCC_THRESHOLD
-                  && map.data[v_neighbours[j]] >= 0) { //  >= 0 AANPASSING
+                  && map.data[v_neighbours[j]] >= 0) {  //  >= 0 AANPASSING
                 map_open_neighbor = true;
                 break;
               }
@@ -171,11 +173,8 @@ int map_height, int map_width, int pose) {
         }
       }
     }
-    //ROS_INFO("wfd 7");
     cell_states[cur_pos] = MAP_CLOSE_LIST;
-    //ROS_INFO("wfd 7.1");
   }
-  // ROS_INFO("wfd 8");
   return frontiers;
 }
-}
+
