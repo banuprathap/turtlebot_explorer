@@ -40,8 +40,10 @@
 #define SRC_WAVEFRONT_DETECTION_HPP_
 #include <vector>
 #include <queue>
+#include <map>
 #include "ros/ros.h"
 #include "nav_msgs/OccupancyGrid.h"
+
 
 class Wavefront {
  public:

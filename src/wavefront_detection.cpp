@@ -38,6 +38,10 @@
  */
 #include "wavefront_detection.hpp"
 #define OCC_THRESH 10  //  threshold value to determine cell occupancy
+#define MAP_OPEN_LIST 1
+#define MAP_CLOSE_LIST 2
+#define FRONTIER_OPEN_LIST 3
+#define FRONTIER_CLOSE_LIST 4
 /**
  * @brief      Returns the neighbours of a cell
  *
@@ -92,4 +96,86 @@ bool Wavefront::is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
 std::vector<std::vector<int>> Wavefront::wfd(const nav_msgs::OccupancyGrid& map,
 int map_height, int map_width, int pose) {
   std::vector<std::vector<int>> frontiers;
+  int map_size = map_height * map_width;
+  std::map<int, int> cell_states;
+  queue<int> q_m;
+  q_m.push(pose);
+  cell_states[pose] = MAP_OPEN_LIST;
+  int adj_vector[8];
+  int v_neighbours[8];
+  while (!q_m.empty()) {
+    int cur_pos = q_m.front();
+    q_m.pop();
+    ROS_INFO("cur_pos: %d, cell_state: %d", cur_pos, cell_states[cur_pos]);
+    //  Skip if map_close_list
+    if (cell_states[cur_pos] == MAP_CLOSE_LIST)
+      continue;
+    if (is_frontier_point(map, cur_pos, map_size, map_width)) {
+      std::queue<int> q_f;
+      std::vector<int> new_frontier;
+      q_f.push(cur_pos);
+      cell_states[cur_pos] = FRONTIER_OPEN_LIST;
+      //  Second BFS
+      while (!q_f.empty()) {
+        ROS_INFO("Size: %d", q_f.size());
+        int n_cell = q_f.front();
+        q_f.pop();
+        if (cell_states[n_cell] == MAP_CLOSE_LIST
+            || cell_states[n_cell] == FRONTIER_CLOSE_LIST)
+          continue;
+        if (is_frontier_point(map, n_cell, map_size, map_width)) {
+          ROS_INFO("adding %d to frontiers", n_cell);
+          new_frontier.push_back(n_cell);
+          get_neighbours(adj_vector, cur_pos, map_width);
+          for (int i = 0; i < 8; i++) {
+            if (adj_vector[i] < map_size && adj_vector[i] >= 0) {
+              if (cell_states[adj_vector[i]] != FRONTIER_OPEN_LIST &&
+                  cell_states[adj_vector[i]] != FRONTIER_CLOSE_LIST &&
+                  cell_states[adj_vector[i]] != MAP_CLOSE_LIST) {
+                if (map.data[adj_vector[i]] != 100) {
+                  q_f.push(adj_vector[i]);
+                  cell_states[adj_vector[i]] = FRONTIER_OPEN_LIST;
+                }
+              }
+            }
+          }
+        }
+        cell_states[n_cell] = FRONTIER_CLOSE_LIST;
+      }
+      if (new_frontier.size() > 2)
+        frontiers.push_back(new_frontier);
+      for (unsigned int i = 0; i < new_frontier.size(); i++) {
+        cell_states[new_frontier[i]] = MAP_CLOSE_LIST;
+      }
+    }
+    get_neighbours(adj_vector, cur_pos, map_width);
+    for (int i = 0; i < 8; ++i) {
+      if (adj_vector[i] < map_size && adj_vector[i] >= 0) {
+        if (cell_states[adj_vector[i]] != MAP_OPEN_LIST
+            &&  cell_states[adj_vector[i]] != MAP_CLOSE_LIST) {
+          get_neighbours(v_neighbours, adj_vector[i], map_width);
+          bool map_open_neighbor = false;
+          for (int j = 0; j < 8; j++) {
+            if (v_neighbours[j] < map_size && v_neighbours[j] >= 0) {
+              if (map.data[v_neighbours[j]] < OCC_THRESHOLD
+                  && map.data[v_neighbours[j]] >= 0) { //  >= 0 AANPASSING
+                map_open_neighbor = true;
+                break;
+              }
+            }
+          }
+          if (map_open_neighbor) {
+            q_m.push(adj_vector[i]);
+            cell_states[adj_vector[i]] = MAP_OPEN_LIST;
+          }
+        }
+      }
+    }
+    //ROS_INFO("wfd 7");
+    cell_states[cur_pos] = MAP_CLOSE_LIST;
+    //ROS_INFO("wfd 7.1");
+  }
+  // ROS_INFO("wfd 8");
+  return frontiers;
+}
 }
