@@ -47,6 +47,8 @@
 #include "nav_msgs/OccupancyGrid.h"
 #include "wavefront_detection.hpp"
 
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+
 /**
  * @brief      Class for exploration task.
  */

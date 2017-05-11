@@ -44,7 +44,6 @@ void Explorer::Explorer(ros::NodeHandle& nh) {
   frontier_pub = nh.advertise<sensor_msgs::PointCloud>("frontiers", 1);
   mapSub = nh.subscribe("map", 1, &Explorer::mapCallback, this);
   frontier_cloud.header.frame_id = "map";
-  Wavefront wf;
 }
 
 void Explorer::mapCallback(const nav_msgs::OccupancyGrid& map) {
@@ -74,4 +73,22 @@ void Explorer::mapCallback(const nav_msgs::OccupancyGrid& map) {
     }
   }
   frontier_publisher.publish(frontier_cloud);
+}
+
+void Explorer::spin() {
+  ros::Rate rate(10);  //  Specify the FSM loop rate in Hz
+  while (ros::ok()) {  //  Keep spinning loop until user presses Ctrl+C
+    ros::spinOnce();  //  Allow ROS to process incoming messages
+    frontier_publisher.publish(frontier_cloud);
+    rate.sleep();  //  Sleep for the rest of the cycle
+  }
+}
+int main(int argc, char **argv) {
+  ros::init(argc, argv,
+            "TurtlebotExploration");  //  Initiate new ROS node
+  ros::NodeHandle n;
+  TurtlebotExploration walker(n);
+  ROS_INFO("INFO! FRINTIERS");
+  walker.spin();  //  Execute FSM loop
+  return 0;
 }
