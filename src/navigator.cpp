@@ -38,9 +38,10 @@
  */
 #include "navigator.hpp"
 
-void Navigator::Navigator(ros::NodeHandle& nh) {
+void Navigator::Navigator(ros::NodeHandle& nh, tf::TransformListener& list) {
   frontierSub = nh.subscribe("frontiers", 1,
                              &Navigator::frontierCallback, this);
+  tfListener = &list;
 }
 
 float Navigator::getDistance(float x1, float x2, float y1, float y2) {
@@ -120,8 +121,9 @@ int main(int argc, char **argv) {
   ros::init(argc, argv,
             "TurtlebotNavigation");  //  Initiate new ROS node
   ros::NodeHandle n;
-  Navigator walker(n);
-  ROS_INFO("INFO! FRONTIERS");
+  tf::TransformListener listener;
+  Navigator walker(n, listener);
+  ROS_INFO("INFO! Navigation Started");
   walker.spin();  //  Execute FSM loop
   return 0;
 }
