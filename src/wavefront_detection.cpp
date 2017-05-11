@@ -49,7 +49,7 @@
  * @param[in]  pos        The position of current cell
  * @param[in]  map_width  The map width
  */
-void Wavefront::getNeighbours(int &n_array[], int pos, int map_width) {
+void Wavefront::getNeighbours(int n_array[], int pos, int map_width) {
   n_array[0] = pos - map_width - 1;
   n_array[1] = pos - map_width;
   n_array[2] = pos - map_width + 1;
@@ -70,7 +70,7 @@ void Wavefront::getNeighbours(int &n_array[], int pos, int map_width) {
  * @return     True if it's a frontier point, False otherwise.
  */
 bool Wavefront::isFrontierPoint(const nav_msgs::OccupancyGrid& map, int point,
-                                  int map_size, int map_width) {
+                                int map_size, int map_width) {
   if (map.data[point] != -1) {
     return false;
   }
@@ -96,8 +96,8 @@ bool Wavefront::isFrontierPoint(const nav_msgs::OccupancyGrid& map, int point,
  *
  * @return     Returns a list of frontiers
  */
-std::vector<std::vector<int>> Wavefront::wfd(const nav_msgs::OccupancyGrid& map,
-int map_height, int map_width, int pose) {
+std::vector<std::vector<int> > Wavefront::wfd(
+  const nav_msgs::OccupancyGrid& map, int map_height, int map_width, int pose) {
   std::vector<std::vector<int>> frontiers;
   int map_size = map_height * map_width;
   std::map<int, int> cell_states;
