@@ -47,8 +47,8 @@
 
 class Wavefront {
  public:
-    void get_neighbours(int& n_array[], int position, int map_width);
-    bool is_frontier_point(const nav_msgs::OccupancyGrid& map, int point,
+    void getNeighbours(int& n_array[], int position, int map_width);
+    bool isFrontierPoint(const nav_msgs::OccupancyGrid& map, int point,
                            int map_size, int map_width);
     std::vector<std::vector<int>> wfd(const nav_msgs::OccupancyGrid& map,
                                       int map_height, int map_width, int pose);
