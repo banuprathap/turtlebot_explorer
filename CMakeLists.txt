@@ -10,6 +10,8 @@ project(turtlebot_explorer)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  std_msgs
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES turtlebot_explorer
-#  CATKIN_DEPENDS roscpp rospy
+  CATKIN_DEPENDS roscpp rospy std_msgs sensor_msgs
 #  DEPENDS system_lib
 )
 
@@ -196,3 +198,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(navigator src/navigator.cpp)
+target_link_libraries(navigator ${catkin_LIBRARIES})
+add_executable(explorer src/explorer.cpp)
+target_link_libraries(explorer ${catkin_LIBRARIES})
