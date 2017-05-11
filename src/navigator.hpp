@@ -74,6 +74,10 @@ class Navigator {
      * @return     The distance.
      */
     float getDistance(float x1, float x2, float y1, float y2);
+    /**
+     * @brief      Function to handle ROS spins
+     */
+    void spin();
   protected:
     /**
      * @brief      Returns the nearest frontier.

@@ -91,7 +91,8 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
   }
 }
 
-int getNearestFrontier(const sensor_msgs::PointCloud frontier_cloud) {
+int Navigator::getNearestFrontier(const sensor_msgs::PointCloud
+                                  frontier_cloud) {
   int frontier_i = 0;
   float closest_frontier_distance = 100000;
   for (int i = 0; i < frontier_cloud.points.size(); i++) {
@@ -105,4 +106,22 @@ int getNearestFrontier(const sensor_msgs::PointCloud frontier_cloud) {
     }
   }
   return frontier_i;
+}
+void Navigator::spin() {
+  ros::Rate rate(10);  //  Specify the FSM loop rate in Hz
+  while (ros::ok()) {  //  Keep spinning loop until user presses Ctrl+C
+    ros::spinOnce();  //  Allow ROS to process incoming messages
+    frontier_publisher.publish(frontier_cloud);
+    rate.sleep();  //  Sleep for the rest of the cycle
+  }
+}
+
+int main(int argc, char **argv) {
+  ros::init(argc, argv,
+            "TurtlebotNavigation");  //  Initiate new ROS node
+  ros::NodeHandle n;
+  Navigator walker(n);
+  ROS_INFO("INFO! FRONTIERS");
+  walker.spin();  //  Execute FSM loop
+  return 0;
 }
