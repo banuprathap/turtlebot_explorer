@@ -37,7 +37,7 @@
  * @date   05/07/2017
  */
 #include <queue>
-#include "wavefront_detection.hpp"
+#include "turtlebot_explorer/wavefront_detection.hpp"
 #define OCC_THRESHOLD 10  //  threshold value to determine cell occupancy
 #define MAP_OPEN_LIST 1
 #define MAP_CLOSE_LIST 2

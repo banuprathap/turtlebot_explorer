@@ -36,12 +36,15 @@
  * @author Banuprathap Anandan
  * @date   05/07/2017
  */
-#include "navigator.hpp"
+#include <cstdlib>  //  Needed for rand()
+#include <ctime>  //  Needed to seed random number generator with a time value
+#include "turtlebot_explorer/navigator.hpp"
 
 Navigator::Navigator(ros::NodeHandle& nh, tf::TransformListener& list) {
-  frontierSub = nh.subscribe("frontiers", 1,
-                             &Navigator::frontierCallback, this);
+  //  srand(time(NULL));
   tfListener = &list;
+  frontierSub = nh.subscribe("frontiers", 1,
+                             &Navigator::frontierCallback, this); 
 }
 
 float Navigator::getDistance(float x1, float x2, float y1, float y2) {
@@ -79,8 +82,10 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
     while (!ac.waitForServer(ros::Duration(10.0))) {
       ROS_INFO("Waiting for the move_base action server to come up");
     }
+    ROS_INFO("move_base action server active");
     ac.sendGoal(goal);
     ac.waitForResult(ros::Duration(45.0));
+    ROS_INFO("move_base goal published");
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
       at_target = true;
       ROS_INFO("The base moved to %f,%f", goal.target_pose.pose.position.x,

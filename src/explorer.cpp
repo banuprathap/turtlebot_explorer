@@ -37,9 +37,12 @@
  * @date   05/07/2017
  */
 #include <vector>
-#include "explorer.hpp"
+#include <cstdlib>  //  Needed for rand()
+#include <ctime>  //  Needed to seed random number generator with a time value
+#include "turtlebot_explorer/explorer.hpp"
 
 Explorer::Explorer(ros::NodeHandle& nh) {
+  //  srand(time(NULL));
   frontier_pub = nh.advertise<sensor_msgs::PointCloud>("frontiers", 1);
   mapSub = nh.subscribe("map", 1, &Explorer::mapCallback, this);
   frontier_cloud.header.frame_id = "map";
