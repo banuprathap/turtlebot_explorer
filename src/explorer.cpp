@@ -39,22 +39,21 @@
 #include <vector>
 #include "explorer.hpp"
 
-Wavefront wf;
-
-void Explorer::Explorer(ros::NodeHandle& nh) {
+Explorer::Explorer(ros::NodeHandle& nh) {
   frontier_pub = nh.advertise<sensor_msgs::PointCloud>("frontiers", 1);
   mapSub = nh.subscribe("map", 1, &Explorer::mapCallback, this);
   frontier_cloud.header.frame_id = "map";
 }
 
 void Explorer::mapCallback(const nav_msgs::OccupancyGrid& map) {
+  Wavefront wtf;
   float resolution = map.info.resolution;
   float map_x = map.info.origin.position.x / resolution;
   float map_y = map.info.origin.position.y / resolution;
   float x = 0. - map_x;
   float y = 0. - map_y;
-  std::vector<std::vector<int>> frontiers = wf.wfd(map, map.info.height,
-                             map.info.width, x + (y * map.info.width));
+  std::vector<std::vector<int> > frontiers = wtf.wfd(map, map.info.height,
+      map.info.width, x + (y * map.info.width));
   int num_points = 0;
   for (int i = 0; i < frontiers.size(); i++) {
     for (int j = 0; j < frontiers[i].size(); j++) {
@@ -73,14 +72,14 @@ void Explorer::mapCallback(const nav_msgs::OccupancyGrid& map) {
       pointI++;
     }
   }
-  frontier_publisher.publish(frontier_cloud);
+  frontier_pub.publish(frontier_cloud);
 }
 
 void Explorer::spin() {
   ros::Rate rate(10);  //  Specify the FSM loop rate in Hz
   while (ros::ok()) {  //  Keep spinning loop until user presses Ctrl+C
     ros::spinOnce();  //  Allow ROS to process incoming messages
-    frontier_publisher.publish(frontier_cloud);
+    frontier_pub.publish(frontier_cloud);
     rate.sleep();  //  Sleep for the rest of the cycle
   }
 }

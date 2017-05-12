@@ -38,7 +38,7 @@
  */
 #include "navigator.hpp"
 
-void Navigator::Navigator(ros::NodeHandle& nh, tf::TransformListener& list) {
+Navigator::Navigator(ros::NodeHandle& nh, tf::TransformListener& list) {
   frontierSub = nh.subscribe("frontiers", 1,
                              &Navigator::frontierCallback, this);
   tfListener = &list;
@@ -55,7 +55,7 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
   tfListener->lookupTransform("/map", "/odom", ros::Time(0), transform);
   if (frontier_cloud.points.size() == 0)
     return;
-  int frontier_i = getNearestFrontier(frontier_cloud);
+  int frontier_i = getNearestFrontier(frontier_cloud, transform);
   ROS_INFO("Closest frontier: %d", frontier_i);
   move_base_msgs::MoveBaseGoal goal;
   goal.target_pose.header.frame_id = "map";
@@ -74,7 +74,8 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
     goal.target_pose.pose.orientation = odom_quat;
     ROS_INFO("Navigating to: x: %f y: %f", goal.target_pose.pose.position.x,
              goal.target_pose.pose.position.y);
-    MoveBaseClient ac("move_base", true);
+    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac("move_base",
+        true);
     while (!ac.waitForServer(ros::Duration(10.0))) {
       ROS_INFO("Waiting for the move_base action server to come up");
     }
@@ -93,7 +94,7 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
 }
 
 int Navigator::getNearestFrontier(const sensor_msgs::PointCloud
-                                  frontier_cloud) {
+                                  frontier_cloud, const tf::StampedTransform transform) {
   int frontier_i = 0;
   float closest_frontier_distance = 100000;
   for (int i = 0; i < frontier_cloud.points.size(); i++) {

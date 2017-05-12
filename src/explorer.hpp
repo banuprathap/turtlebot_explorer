@@ -44,8 +44,11 @@
 #include "ros/console.h"
 #include "geometry_msgs/Twist.h"
 #include "sensor_msgs/LaserScan.h"
+#include "sensor_msgs/PointCloud.h"
+#include "move_base_msgs/MoveBaseAction.h"
 #include "nav_msgs/OccupancyGrid.h"
 #include "wavefront_detection.hpp"
+#include "actionlib/client/simple_action_client.h"
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
@@ -67,6 +70,10 @@ class Explorer {
      * @param[in]  map   The map
      */
     void mapCallback(const nav_msgs::OccupancyGrid& map);
+    /**
+     * @brief      Function to handle ROS spins
+     */
+    void spin();
   protected:
     sensor_msgs::PointCloud frontier_cloud;
     ros::Publisher frontier_pub;

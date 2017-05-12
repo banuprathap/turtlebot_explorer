@@ -45,18 +45,20 @@
 #include "nav_msgs/OccupancyGrid.h"
 #include "tf/transform_broadcaster.h"
 #include "tf/transform_listener.h"
+#include "tf/transform_datatypes.h"
 #include "sensor_msgs/PointCloud.h"
 #include "move_base_msgs/MoveBaseAction.h"
 #include "actionlib/client/simple_action_client.h"
 
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+MoveBaseClient;
 
 /**
  * @brief      Class for navigator functionalities.
  */
 class Navigator {
   public:
-    Navigator(ros::NodeHandle& nh);
+    Navigator(ros::NodeHandle& nh, tf::TransformListener& list);
     /**
      * @brief      Callback function for frontier subscriber
      *
@@ -86,7 +88,8 @@ class Navigator {
      *
      * @return     The nearest frontier index.
      */
-    int getNearestFrontier(const sensor_msgs::PointCloud frontier_cloud);
+    int getNearestFrontier(const sensor_msgs::PointCloud frontier_cloud,
+                           const tf::StampedTransform transform);
     /**
      * @brief      Fucntion to move the robot to
      *             the given map index
