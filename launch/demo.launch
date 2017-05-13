@@ -6,12 +6,15 @@
   <arg name="gui" default="true"/>
   <arg name="stacks"    value="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons --> 
   <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro --> 
+  
+  <!--
+   <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />  
+  --> 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot_explorer)/rviz/navigation.rviz">
 
-
-  <!-- <include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />  -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot_explorer)/rviz/final.rviz">
      <remap from="scan" to="/base_scan"/>
   </node>
+  
 
   <node pkg="stage_ros" type="stageros" name="stageros" args="$(find turtlebot_explorer)/world/swarmlab.world" respawn="false">
   	<param name="base_watchdog_timeout" value=".2"/>

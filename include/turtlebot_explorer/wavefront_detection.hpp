@@ -46,12 +46,39 @@
 
 
 class Wavefront {
- public:
- 	void getNeighbours(int n_array[], int position, int map_width);
+  public:
+    /**
+     * @brief      Returns the neighbours.
+     *
+     * @param      n_array    The n array containing neighbours
+     * @param[in]  position   The position for which the neighbours are sought
+     * @param[in]  map_width  The map width
+     */
+    void getNeighbours(int n_array[], int position, int map_width);
+    /**
+    * @brief      Determines if a given point is a frontier point.
+    *
+    * @param[in]  map        The map
+    * @param[in]  point      The point of interest
+    * @param[in]  map_size   The map size
+    * @param[in]  map_width  The map width
+    *
+    * @return     True if it's a frontier point, False otherwise.
+    */
     bool isFrontierPoint(const nav_msgs::OccupancyGrid& map, int point,
-                           int map_size, int map_width);
+                         int map_size, int map_width);
+    /**
+    * @brief      Wavefront Frontier Detector
+    *
+    * @param[in]  map         The map
+    * @param[in]  map_height  The map height
+    * @param[in]  map_width   The map width
+    * @param[in]  pose        Current pose of robot
+    *
+    * @return     Returns a list of frontiers
+    */
     std::vector<std::vector<int> > wfd(const nav_msgs::OccupancyGrid& map,
-                                      int map_height, int map_width, int pose);
+                                       int map_height, int map_width, int pose);
 };
 
 #endif  //  SRC_WAVEFRONT_DETECTION_HPP_

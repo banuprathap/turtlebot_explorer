@@ -40,28 +40,57 @@ target_link_libraries(navigator ${catkin_LIBRARIES})
 
 ## Declare a cpp executable
 add_executable(explorer src/explorer.cpp)
-target_link_libraries(explorer wavefront)
+target_link_libraries(explorer wavefront ${catkin_LIBRARIES})
 
 
-#############
-## Install ##
-#############
+add_library(src_navigator src/navigator.cpp)
+target_link_libraries(src_navigator ${catkin_LIBRARIES})
 
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
-
+add_library(src_explorer src/explorer.cpp)
+target_link_libraries(src_explorer wavefront ${catkin_LIBRARIES})
 
 
 #############
 ## Testing ##
 #############
 
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_turtlebot_explorer.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  ###########  EXPLORER TESTS  ###########
+  add_rostest_gtest(
+  test_explorer
+  test/test_explorer.launch
+  test/test_explorer.cpp
+  )
+  target_link_libraries(
+  test_explorer
+  wavefront
+  src_explorer
+  ${catkin_LIBRARIES}
+  )
+  add_dependencies(
+  test_explorer
+  #explorer
+  ${catkin_EXPORTED_TARGETS}
+  )
+  ###########  NAVIGATOR TESTS  ###########
+  add_rostest_gtest(
+  test_navigator
+  test/test_navigator.launch
+  test/test_navigator.cpp
+  #src/navigator.cpp
+  )
+  target_link_libraries(
+  test_navigator
+  src_navigator
+  #wavefront
+  ${catkin_LIBRARIES}
+  )
+  add_dependencies(
+  test_navigator
+  #navigator
+  ${catkin_EXPORTED_TARGETS}
+  )
+endif()
 
-## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)
 

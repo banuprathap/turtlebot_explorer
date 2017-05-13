@@ -1,0 +1,5 @@
+<launch>
+	
+	<test name="test_wavefront" pkg="turtlebot_explorer" type="test_wavefront"/>
+
+</launch>

@@ -1,0 +1,6 @@
+<launch>
+	
+	<node name="explorer" pkg="turtlebot_explorer" type="explorer"/>
+	<test test-name="test_explorer" pkg="turtlebot_explorer" type="test_explorer"/>
+
+</launch>

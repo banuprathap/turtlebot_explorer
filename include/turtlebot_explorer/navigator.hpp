@@ -58,6 +58,12 @@ MoveBaseClient;
  */
 class Navigator {
   public:
+    /**
+     * @brief      Default constructor
+     *
+     * @param      nh    ROS NodeHandle
+     * @param      list  tfListener
+     */
     Navigator(ros::NodeHandle& nh, tf::TransformListener& list);
     /**
      * @brief      Callback function for frontier subscriber
