@@ -1,0 +1,83 @@
+\hypertarget{test__explorer_8cpp}{\section{test/test\-\_\-explorer.cpp File Reference}
+\label{test__explorer_8cpp}\index{test/test\-\_\-explorer.\-cpp@{test/test\-\_\-explorer.\-cpp}}
+}
+
+
+A simple unit test for \hyperlink{explorer_8cpp}{explorer.\-cpp}.  
+
+
+{\ttfamily \#include $<$ros/ros.\-h$>$}\\*
+{\ttfamily \#include $<$gtest/gtest.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}turtlebot\-\_\-explorer/explorer.\-hpp\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{test__explorer_8cpp_a949b0832f68c6c8bab18bf382819fb8f}{T\-E\-S\-T} (T\-E\-S\-T\-Suite, mapcallback)
+\begin{DoxyCompactList}\small\item\em test map\-Callback function \end{DoxyCompactList}\item 
+int \hyperlink{test__explorer_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em program entrypoint \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A simple unit test for \hyperlink{explorer_8cpp}{explorer.\-cpp}. \begin{DoxyAuthor}{Author}
+Banuprathap Anandan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05/12/2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{test__explorer_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{test\-\_\-explorer.\-cpp@{test\-\_\-explorer.\-cpp}!main@{main}}
+\index{main@{main}!test_explorer.cpp@{test\-\_\-explorer.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{test__explorer_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+program entrypoint 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argc \\
+\hline
+{\em argv} & The argv\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer 0 upon exit success \par
+ integer -\/1 upon exit failure 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+67                                 \{
+68   ros::init(argc, argv, \textcolor{stringliteral}{"explorer"});
+69   testing::InitGoogleTest(&argc, argv);
+70   \textcolor{keywordflow}{return} RUN\_ALL\_TESTS();
+71 \}
+\end{DoxyCode}
+\hypertarget{test__explorer_8cpp_a949b0832f68c6c8bab18bf382819fb8f}{\index{test\-\_\-explorer.\-cpp@{test\-\_\-explorer.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test_explorer.cpp@{test\-\_\-explorer.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{T\-E\-S\-T\-Suite}]{, }
+\item[{mapcallback}]{}
+\end{DoxyParamCaption}
+)}}\label{test__explorer_8cpp_a949b0832f68c6c8bab18bf382819fb8f}
+
+
+test map\-Callback function 
+
+No testable feature, check if function call works 
+\begin{DoxyCode}
+50                              \{
+51   ros::NodeHandle nh;
+52   Explorer explore(nh);
+53   nav\_msgs::OccupancyGrid map;
+54   explore.mapCallback(map);
+55   EXPECT\_TRUE(\textcolor{keyword}{true});
+56 \}
+\end{DoxyCode}

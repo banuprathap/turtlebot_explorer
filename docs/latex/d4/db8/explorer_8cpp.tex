@@ -1,0 +1,44 @@
+\hypertarget{explorer_8cpp}{\section{src/explorer.cpp File Reference}
+\label{explorer_8cpp}\index{src/explorer.\-cpp@{src/explorer.\-cpp}}
+}
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include \char`\"{}turtlebot\-\_\-explorer/explorer.\-hpp\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{explorer_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Banuprathap Anandan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05/07/2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{explorer_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{explorer.\-cpp@{explorer.\-cpp}!main@{main}}
+\index{main@{main}!explorer.cpp@{explorer.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{explorer_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+\begin{DoxyCode}
+89                                 \{
+90   ros::init(argc, argv,
+91             \textcolor{stringliteral}{"TurtlebotExploration"});  \textcolor{comment}{//  Initiate new ROS node}
+92   ros::NodeHandle n;
+93   Explorer explore(n);
+94   ROS\_INFO(\textcolor{stringliteral}{"INFO! FRONTIERS"});
+95   explore.spin();  \textcolor{comment}{//  Execute FSM loop}
+96   \textcolor{keywordflow}{return} 0;
+97 \}
+\end{DoxyCode}

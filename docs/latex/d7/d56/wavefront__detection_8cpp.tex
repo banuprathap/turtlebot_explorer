@@ -1,0 +1,45 @@
+\hypertarget{wavefront__detection_8cpp}{\section{src/wavefront\-\_\-detection.cpp File Reference}
+\label{wavefront__detection_8cpp}\index{src/wavefront\-\_\-detection.\-cpp@{src/wavefront\-\_\-detection.\-cpp}}
+}
+{\ttfamily \#include $<$queue$>$}\\*
+{\ttfamily \#include \char`\"{}turtlebot\-\_\-explorer/wavefront\-\_\-detection.\-hpp\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{wavefront__detection_8cpp_a9c8dab4d7eb643acf9949cdac88db0c4}{O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D}~10
+\item 
+\#define \hyperlink{wavefront__detection_8cpp_a1acaba0b7d1ff490ffb0670252f8b53e}{M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}~1
+\item 
+\#define \hyperlink{wavefront__detection_8cpp_a39d172c1c53930501d920c9fece1ce4f}{M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}~2
+\item 
+\#define \hyperlink{wavefront__detection_8cpp_ab478ba3dd13d2a1cf90c2b78db13ccd3}{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}~3
+\item 
+\#define \hyperlink{wavefront__detection_8cpp_a3342434aeedbaa8d50e25a3b6e75f4e7}{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}~4
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Banuprathap Anandan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05/07/2017 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{wavefront__detection_8cpp_a3342434aeedbaa8d50e25a3b6e75f4e7}{\index{wavefront\-\_\-detection.\-cpp@{wavefront\-\_\-detection.\-cpp}!F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T@{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}}
+\index{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T@{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}!wavefront_detection.cpp@{wavefront\-\_\-detection.\-cpp}}
+\subsubsection[{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T~4}}\label{wavefront__detection_8cpp_a3342434aeedbaa8d50e25a3b6e75f4e7}
+\hypertarget{wavefront__detection_8cpp_ab478ba3dd13d2a1cf90c2b78db13ccd3}{\index{wavefront\-\_\-detection.\-cpp@{wavefront\-\_\-detection.\-cpp}!F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T@{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}}
+\index{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T@{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}!wavefront_detection.cpp@{wavefront\-\_\-detection.\-cpp}}
+\subsubsection[{F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\-R\-O\-N\-T\-I\-E\-R\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T~3}}\label{wavefront__detection_8cpp_ab478ba3dd13d2a1cf90c2b78db13ccd3}
+\hypertarget{wavefront__detection_8cpp_a39d172c1c53930501d920c9fece1ce4f}{\index{wavefront\-\_\-detection.\-cpp@{wavefront\-\_\-detection.\-cpp}!M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T@{M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}}
+\index{M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T@{M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}!wavefront_detection.cpp@{wavefront\-\_\-detection.\-cpp}}
+\subsubsection[{M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P\-\_\-\-C\-L\-O\-S\-E\-\_\-\-L\-I\-S\-T~2}}\label{wavefront__detection_8cpp_a39d172c1c53930501d920c9fece1ce4f}
+\hypertarget{wavefront__detection_8cpp_a1acaba0b7d1ff490ffb0670252f8b53e}{\index{wavefront\-\_\-detection.\-cpp@{wavefront\-\_\-detection.\-cpp}!M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T@{M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}}
+\index{M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T@{M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}!wavefront_detection.cpp@{wavefront\-\_\-detection.\-cpp}}
+\subsubsection[{M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\-A\-P\-\_\-\-O\-P\-E\-N\-\_\-\-L\-I\-S\-T~1}}\label{wavefront__detection_8cpp_a1acaba0b7d1ff490ffb0670252f8b53e}
+\hypertarget{wavefront__detection_8cpp_a9c8dab4d7eb643acf9949cdac88db0c4}{\index{wavefront\-\_\-detection.\-cpp@{wavefront\-\_\-detection.\-cpp}!O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D@{O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D}}
+\index{O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D@{O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D}!wavefront_detection.cpp@{wavefront\-\_\-detection.\-cpp}}
+\subsubsection[{O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\-C\-C\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D~10}}\label{wavefront__detection_8cpp_a9c8dab4d7eb643acf9949cdac88db0c4}

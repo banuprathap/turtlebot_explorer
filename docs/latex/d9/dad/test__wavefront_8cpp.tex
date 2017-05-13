@@ -1,0 +1,107 @@
+\hypertarget{test__wavefront_8cpp}{\section{test/test\-\_\-wavefront.cpp File Reference}
+\label{test__wavefront_8cpp}\index{test/test\-\_\-wavefront.\-cpp@{test/test\-\_\-wavefront.\-cpp}}
+}
+{\ttfamily \#include $<$ros/ros.\-h$>$}\\*
+{\ttfamily \#include $<$gtest/gtest.\-h$>$}\\*
+{\ttfamily \#include \char`\"{}turtlebot\-\_\-explorer/wavefront\-\_\-detection.\-hpp\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{test__wavefront_8cpp_a9234cf0e5a2ec20ae126b0078114b12e}{T\-E\-S\-T} (T\-E\-S\-T\-Suite, get\-Neighbours)
+\begin{DoxyCompactList}\small\item\em test get\-Neighbours() \end{DoxyCompactList}\item 
+\hyperlink{test__wavefront_8cpp_aec901f4195335980f6cfd6890e9b00f9}{T\-E\-S\-T} (T\-E\-S\-T\-Suite, is\-Frontier\-Point)
+\begin{DoxyCompactList}\small\item\em test is\-Frontier\-Point() \end{DoxyCompactList}\item 
+int \hyperlink{test__wavefront_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em program entrypoint \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Wavefront \hyperlink{test__wavefront_8cpp_ab66ec94f61bac3f5ed2a6c7a36d13ceb}{wf}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{test__wavefront_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{test\-\_\-wavefront.\-cpp@{test\-\_\-wavefront.\-cpp}!main@{main}}
+\index{main@{main}!test_wavefront.cpp@{test\-\_\-wavefront.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{test__wavefront_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+program entrypoint 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The argc \\
+\hline
+{\em argv} & The argv\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+integer 0 upon exit success \par
+ integer -\/1 upon exit failure 
+\end{DoxyReturn}
+
+\begin{DoxyCode}
+79                                 \{
+80   ros::init(argc, argv, \textcolor{stringliteral}{"wavefront"});
+81   testing::InitGoogleTest(&argc, argv);
+82   \textcolor{keywordflow}{return} RUN\_ALL\_TESTS();
+83 \}
+\end{DoxyCode}
+\hypertarget{test__wavefront_8cpp_a9234cf0e5a2ec20ae126b0078114b12e}{\index{test\-\_\-wavefront.\-cpp@{test\-\_\-wavefront.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test_wavefront.cpp@{test\-\_\-wavefront.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{T\-E\-S\-T\-Suite}]{, }
+\item[{get\-Neighbours}]{}
+\end{DoxyParamCaption}
+)}}\label{test__wavefront_8cpp_a9234cf0e5a2ec20ae126b0078114b12e}
+
+
+test get\-Neighbours() 
+
+
+\begin{DoxyCode}
+47                                \{
+48   \textcolor{keywordtype}{int} neighbours[8];
+49   \hyperlink{test__wavefront_8cpp_ab66ec94f61bac3f5ed2a6c7a36d13ceb}{wf}.getNeighbours(neighbours, 55, 20);
+50   EXPECT\_EQ(neighbours[0], 34);
+51   EXPECT\_EQ(neighbours[1], 35);
+52   EXPECT\_EQ(neighbours[2], 36);
+53   EXPECT\_EQ(neighbours[3], 54);
+54   EXPECT\_EQ(neighbours[4], 56);
+55   EXPECT\_EQ(neighbours[5], 74);
+56   EXPECT\_EQ(neighbours[6], 75);
+57   EXPECT\_EQ(neighbours[7], 76);
+58 \}
+\end{DoxyCode}
+\hypertarget{test__wavefront_8cpp_aec901f4195335980f6cfd6890e9b00f9}{\index{test\-\_\-wavefront.\-cpp@{test\-\_\-wavefront.\-cpp}!T\-E\-S\-T@{T\-E\-S\-T}}
+\index{T\-E\-S\-T@{T\-E\-S\-T}!test_wavefront.cpp@{test\-\_\-wavefront.\-cpp}}
+\subsubsection[{T\-E\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}T\-E\-S\-T (
+\begin{DoxyParamCaption}
+\item[{T\-E\-S\-T\-Suite}]{, }
+\item[{is\-Frontier\-Point}]{}
+\end{DoxyParamCaption}
+)}}\label{test__wavefront_8cpp_aec901f4195335980f6cfd6890e9b00f9}
+
+
+test is\-Frontier\-Point() 
+
+
+\begin{DoxyCode}
+65                                  \{
+66   nav\_msgs::OccupancyGrid map;
+67   \textcolor{keywordtype}{bool} test(\hyperlink{test__wavefront_8cpp_ab66ec94f61bac3f5ed2a6c7a36d13ceb}{wf}.isFrontierPoint(map, 10, 4000, 20));
+68   EXPECT\_FALSE(test);
+69 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\hypertarget{test__wavefront_8cpp_ab66ec94f61bac3f5ed2a6c7a36d13ceb}{\index{test\-\_\-wavefront.\-cpp@{test\-\_\-wavefront.\-cpp}!wf@{wf}}
+\index{wf@{wf}!test_wavefront.cpp@{test\-\_\-wavefront.\-cpp}}
+\subsubsection[{wf}]{\setlength{\rightskip}{0pt plus 5cm}Wavefront wf}}\label{test__wavefront_8cpp_ab66ec94f61bac3f5ed2a6c7a36d13ceb}

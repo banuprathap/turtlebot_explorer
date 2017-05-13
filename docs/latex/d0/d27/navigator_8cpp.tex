@@ -1,0 +1,44 @@
+\hypertarget{navigator_8cpp}{\section{src/navigator.cpp File Reference}
+\label{navigator_8cpp}\index{src/navigator.\-cpp@{src/navigator.\-cpp}}
+}
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include \char`\"{}turtlebot\-\_\-explorer/navigator.\-hpp\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{navigator_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Banuprathap Anandan 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+05/07/2017 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{navigator_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{navigator.\-cpp@{navigator.\-cpp}!main@{main}}
+\index{main@{main}!navigator.cpp@{navigator.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{navigator_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+\begin{DoxyCode}
+126                                 \{
+127   ros::init(argc, argv,
+128             \textcolor{stringliteral}{"TurtlebotNavigation"});  \textcolor{comment}{//  Initiate new ROS node}
+129   ros::NodeHandle n;
+130   tf::TransformListener listener;
+131   Navigator walker(n, listener);
+132   ROS\_INFO(\textcolor{stringliteral}{"INFO! Navigation Started"});
+133   walker.spin();  \textcolor{comment}{//  Execute FSM loop}
+134   \textcolor{keywordflow}{return} 0;
+135 \}
+\end{DoxyCode}
