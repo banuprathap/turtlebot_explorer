@@ -44,7 +44,7 @@ Navigator::Navigator(ros::NodeHandle& nh, tf::TransformListener& list) {
   //  srand(time(NULL));
   tfListener = &list;
   frontierSub = nh.subscribe("frontiers", 1,
-                             &Navigator::frontierCallback, this); 
+                             &Navigator::frontierCallback, this);
 }
 
 float Navigator::getDistance(float x1, float x2, float y1, float y2) {
@@ -77,8 +77,8 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
     goal.target_pose.pose.orientation = odom_quat;
     ROS_INFO("Navigating to: x: %f y: %f", goal.target_pose.pose.position.x,
              goal.target_pose.pose.position.y);
-    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac("move_base",
-        true);
+    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+    ac("move_base", true);
     while (!ac.waitForServer(ros::Duration(10.0))) {
       ROS_INFO("Waiting for the move_base action server to come up");
     }
@@ -90,7 +90,8 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
       at_target = true;
       ROS_INFO("The base moved to %f,%f", goal.target_pose.pose.position.x,
                goal.target_pose.pose.position.y);
-      geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(3.14);
+      geometry_msgs::Quaternion odom_quat =
+                tf::createQuaternionMsgFromYaw(3.14);
       goal.target_pose.pose.orientation = odom_quat;
       ac.sendGoal(goal);
       ac.waitForResult();
@@ -99,7 +100,7 @@ void Navigator::frontierCallback(const sensor_msgs::PointCloud frontier_cloud) {
 }
 
 int Navigator::getNearestFrontier(const sensor_msgs::PointCloud
-                                  frontier_cloud, const tf::StampedTransform transform) {
+      frontier_cloud, const tf::StampedTransform transform) {
   int frontier_i = 0;
   float closest_frontier_distance = 100000;
   for (int i = 0; i < frontier_cloud.points.size(); i++) {

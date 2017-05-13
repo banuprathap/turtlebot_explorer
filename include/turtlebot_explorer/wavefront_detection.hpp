@@ -36,8 +36,8 @@
  * @author Banuprathap Anandan
  * @date   05/06/2017
  */
-#ifndef SRC_WAVEFRONT_DETECTION_HPP_
-#define SRC_WAVEFRONT_DETECTION_HPP_
+#ifndef INCLUDE_TURTLEBOT_EXPLORER_WAVEFRONT_DETECTION_HPP_
+#define INCLUDE_TURTLEBOT_EXPLORER_WAVEFRONT_DETECTION_HPP_
 #include <vector>
 #include <queue>
 #include <map>
@@ -46,7 +46,7 @@
 
 
 class Wavefront {
-  public:
+ public:
     /**
      * @brief      Returns the neighbours.
      *
@@ -81,4 +81,4 @@ class Wavefront {
                                        int map_height, int map_width, int pose);
 };
 
-#endif  //  SRC_WAVEFRONT_DETECTION_HPP_
+#endif  //  INCLUDE_TURTLEBOT_EXPLORER_WAVEFRONT_DETECTION_HPP_

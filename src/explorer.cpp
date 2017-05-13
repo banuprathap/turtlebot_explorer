@@ -67,10 +67,10 @@ void Explorer::mapCallback(const nav_msgs::OccupancyGrid& map) {
   int pointI = 0;
   for (int i = 0; i < frontiers.size(); i++) {
     for (int j = 0; j < frontiers[i].size(); j++) {
-      frontier_cloud.points[pointI].x = ((frontiers[i][j] % map.info.width) + map_x) *
-                                        resolution;
-      frontier_cloud.points[pointI].y = ((frontiers[i][j] / map.info.width) + map_y) *
-                                        resolution;
+      frontier_cloud.points[pointI].x =
+      ((frontiers[i][j] % map.info.width) + map_x) * resolution;
+      frontier_cloud.points[pointI].y =
+      ((frontiers[i][j] / map.info.width) + map_y) * resolution;
       frontier_cloud.points[pointI].z = 0;
       pointI++;
     }

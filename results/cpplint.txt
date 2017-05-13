@@ -1,0 +1,11 @@
+Done processing include/turtlebot_explorer/wavefront_detection.hpp
+include/turtlebot_explorer/explorer.hpp:67:  Is this a non-const reference? If so, make const or use a pointer: ros::NodeHandle& nh  [runtime/references] [2]
+Done processing include/turtlebot_explorer/explorer.hpp
+include/turtlebot_explorer/navigator.hpp:66:  Is this a non-const reference? If so, make const or use a pointer: ros::NodeHandle& nh  [runtime/references] [2]
+include/turtlebot_explorer/navigator.hpp:66:  Is this a non-const reference? If so, make const or use a pointer: tf::TransformListener& list  [runtime/references] [2]
+Done processing include/turtlebot_explorer/navigator.hpp
+Done processing src/wavefront_detection.cpp
+Done processing src/explorer.cpp
+src/navigator.cpp:70:  Consider using rand_r(...) instead of rand(...) for improved thread safety.  [runtime/threadsafe_fn] [2]
+Done processing src/navigator.cpp
+Total errors found: 4

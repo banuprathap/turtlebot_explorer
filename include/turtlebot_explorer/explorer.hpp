@@ -37,8 +37,8 @@
  * @date   05/07/2017
  */
 
-#ifndef SRC_EXPLORER_HPP_
-#define SRC_EXPLORER_HPP_
+#ifndef INCLUDE_TURTLEBOT_EXPLORER_EXPLORER_HPP_
+#define INCLUDE_TURTLEBOT_EXPLORER_EXPLORER_HPP_
 
 #include "ros/ros.h"
 #include "ros/console.h"
@@ -50,20 +50,21 @@
 #include "wavefront_detection.hpp"
 #include "actionlib/client/simple_action_client.h"
 
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+                MoveBaseClient;
 
 /**
  * @brief      Class for exploration task.
  */
 class Explorer {
-  public:
+ public:
     /**
      * @brief      Default constructor to initiate publisher and subscriber
      *
      *
      * @param      nh    ROS NodeHandle
      */
-    Explorer(ros::NodeHandle& nh);
+    explicit Explorer(ros::NodeHandle& nh);
     /**
      * @brief      Callback function from the map subscriber
      *
@@ -74,11 +75,12 @@ class Explorer {
      * @brief      Function to handle ROS spins
      */
     void spin();
-  protected:
+
+ protected:
     sensor_msgs::PointCloud frontier_cloud;
     ros::Publisher frontier_pub;
     ros::Subscriber mapSub;
     Wavefront wf;
 };
 
-#endif  //  SRC_EXPLORER_HPP_
+#endif  //  INCLUDE_TURTLEBOT_EXPLORER_EXPLORER_HPP_

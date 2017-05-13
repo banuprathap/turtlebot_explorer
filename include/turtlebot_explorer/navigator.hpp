@@ -35,8 +35,8 @@
  * @author Banuprathap Anandan
  * @date   05/07/2017
  */
-#ifndef SRC_NAVIGATOR_HPP_
-#define SRC_NAVIGATOR_HPP_
+#ifndef INCLUDE_TURTLEBOT_EXPLORER_NAVIGATOR_HPP_
+#define INCLUDE_TURTLEBOT_EXPLORER_NAVIGATOR_HPP_
 #include "ros/ros.h"
 #include "ros/console.h"
 #include "geometry_msgs/Twist.h"
@@ -56,7 +56,7 @@ MoveBaseClient;
  * @brief      Class for navigator functionalities.
  */
 class Navigator {
-  public:
+ public:
     /**
      * @brief      Default constructor
      *
@@ -85,7 +85,8 @@ class Navigator {
      * @brief      Function to handle ROS spins
      */
     void spin();
-  protected:
+
+ protected:
     /**
      * @brief      Returns the nearest frontier.
      *
@@ -113,4 +114,4 @@ class Navigator {
     tf::TransformListener *tfListener;
 };
 
-#endif  //  SRC_NAVIGATOR_HPP_
+#endif  //  INCLUDE_TURTLEBOT_EXPLORER_NAVIGATOR_HPP_
