@@ -61,6 +61,7 @@ void Wavefront::getNeighbours(int n_array[], int pos, int map_width) {
   n_array[6] = pos + map_width;
   n_array[7] = pos + map_width + 1;
 }
+
 /**
  * @brief      Determines if a given point is a frontier point.
  *
