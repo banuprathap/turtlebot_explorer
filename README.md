@@ -36,6 +36,9 @@ The project follows SIP(Solo Iterative Process) to track software changes(SC). F
 
 Please click [here](https://docs.google.com/a/terpmail.umd.edu/document/d/1kNLs_8jYGztJqUSOxdeH_uySTX-DTNycAQB1cX4yv8U/edit?usp=sharing) for details about SPRINT.
 
+##Presentation
+
+The final project presentation can be found [here](https://docs.google.com/presentation/d/1hmX8KdHXtDUZr1Ajh5W6bxFAbqxcGdVvO2YVlW8L4rE/edit?usp=sharing)
 
 ## Build steps
 
